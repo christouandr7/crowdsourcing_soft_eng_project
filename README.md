@@ -1,4 +1,6 @@
-# Segmentation Folks
+This group project implemented during the Software Engineering course and the whole process of a software engineering project was followed (Stakeholders and Software Requirements Specification (StRS and SRS), UML/ER diagrams, Website). The website was a crowdsourcing platform where the registered users were able to enter the price of a certain item in a particular supermarket and also see what the others posted, in order to find the lowest price or offers for the item they look for. The web application was implemented using Angular, HTML, CSS, Javascript and Typescript, as well as Google Maps API. 
+
+
 
 Καλλή Ρεβέκκα 03113716\
 Κουζαπάς Ανδρέας 03114707\
