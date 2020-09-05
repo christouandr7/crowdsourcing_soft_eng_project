@@ -1,0 +1,183 @@
+body{
+	background-repeat: repeat;
+	background-size: 100%;
+	color: black;
+	background-color: #ece9dc;
+}
+
+
+h1 {
+	color: white;
+	font-size: 30px;
+	font-family: "Times New Roman";
+	text-align: center;
+	font-weight: bold;
+
+}
+
+h3{
+	text-align: center;
+	font-family: "Times New Roman";
+	color: black;
+	font-weight: bold;
+}
+
+@media screen and (max-width: 480px) {
+
+        .nomobile {
+            display:none;
+        }
+}
+
+.paragraph{
+	font-family: "Times New Roman";
+	color: black;
+	font-size: 17px;
+	text-align: justify;
+	margin: 15px;
+	margin-right: 15px;
+	font-weight: bold;
+
+}
+
+.center {
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+  width: 50%;
+  text-align:center;
+}
+
+.secondary_logo{
+	display: inline-block;
+	width: 10%;
+	min-width: 100px;
+	padding: 5px 10px 10px 10px;
+}
+
+#cen{
+	text-align: center;
+}
+
+.simple-form{
+	text-align: center;
+	margin: 100px 0px;
+}
+
+.tab-title {
+  color: #e67300;
+  font-weight: bold;
+  font-size: 18px;
+}
+
+.tab-content{
+	color: #e6e6e6;
+  	line-height: 1.8;
+  	font-family: "Arial";
+  	font-weight: bold;
+}
+
+#registration{
+	width: 100%;
+	background-color: #051019;
+	opacity: 0.9;
+	color: black;
+	padding: 20px 0px 50px 0px;
+}
+
+#registration1{
+	width: 100%;
+	color: black;
+	padding: 0px 0px 0px 0px;
+}
+
+.filter_btn{
+	//width: 15em;
+	background-color: #fd9501;
+	margin-bottom: 10px;
+	//font-size: 16px;
+	//color: white;
+}
+#button{
+	width: 25em;
+	padding: 10px;
+	font-style:italic;
+	font-weight: bold;
+	color:#595959;
+}
+
+#buttonInp{
+	width: 25%;
+	height: 100px;
+	padding: 10px;
+	border-radius: 5px;
+}
+
+#but{
+	color: white;
+	font-size: 18px;
+}
+
+.info{
+background-color: #262626;
+}
+
+#butt{
+	width: 25%;
+	padding: 10px;
+	border-radius: 5px;
+	background-color: #0c6996;
+	font-size: 18px;
+}
+
+#butt1{
+	width: 20%;
+	padding: 10px;
+	border-radius: 5px;
+	background-color: #0c6996;
+	font-size: 18px;
+}
+
+#titl{
+	color: white;
+	font-size: 26px;
+}
+
+#titl1{
+	color: white;
+	font-size: 20px;
+}
+
+
+#butt1index{
+	width: 10em;
+	padding: 10px;
+	background-color: #ffb84d;
+	font-size: 16px;
+	color: white;
+	//margin: 10px auto;
+	//display: block;
+}
+
+
+#mapp
+{
+    height: 400px;
+    width: 100%;
+}
+
+.nav-link.active, .nav-pills .show > .nav-link {
+  background-color: #CD853F !important;
+  color: white !important;
+  border-radius: 0;
+  border: 3px solid #CD853F;
+  padding-bottom: 2px;      
+}
+.nav-link {
+  margin-bottom: 25px !important;
+  color: #CD853F !important;
+  border: 3px solid #CD853F !important;      
+}
+.nav-tabs{
+  border-bottom: 0 !important;
+}

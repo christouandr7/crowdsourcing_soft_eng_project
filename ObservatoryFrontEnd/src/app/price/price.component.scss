@@ -1,0 +1,67 @@
+@import '../maintext/stcss.css';
+agm-map {
+  height: 400px;
+  width: 100%;
+}
+
+.button2 {
+    border-radius: 9px;
+    width:280px;
+    height:40px;
+    color: white;
+    background-color: black;
+    }
+
+.button3 {
+    border-radius: 9px;
+    width:280px;
+    height:40px;
+    color: white;
+    background-color: black;
+    }
+
+.button3:hover {
+ width:100px;
+   height:45px;
+  background-color: orange;
+  color: black;
+
+}
+
+.button3:disabled,
+button3[disabled]{
+width:100px;
+   height:45px;
+  background-color: black;
+  color: grey;
+}
+
+
+.page {
+  display:flex;
+  justify-content:space-around;
+}
+
+.card {
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
+  padding: 16px;
+  text-align: center;
+  background-color: #f1f1f1;
+  border-radius: 15px;
+  margin-bottom: 20px;
+  width:100%;
+}
+
+
+.descr {
+  color:rgba(20, 19, 19, 0.733);
+  font-size: 15px;
+}
+
+.name {
+    font:bold;
+}
+
+.card button:hover {
+  opacity: 0.7;
+}

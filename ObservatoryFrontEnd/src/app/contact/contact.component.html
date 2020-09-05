@@ -1,0 +1,55 @@
+<div align="center" style="height: 100vh;">
+      <p style="font-size: 25px; font-weight: bold; color: #fd9501">Επικοινωνήστε μαζί μας!</p>
+<form style="width: 400px; text-align: center; padding: 10px;" >
+
+<form name="form" (ngSubmit)="f.form.valid && onSubmit()" #f="ngForm" novalidate>
+<label for="fullname">Ονοματεπώνυμο</label>
+<div class="form-group" [class.has-error]="fullname.invalid && (fullname.dirty || fullname.touched)">
+    <input id="fullname" type="text" name="fullname" placeholder="Ονοματεπώνυμο" class="form-control "
+        [(ngModel)]="model.fullname" #fullname="ngModel" required fullname  />
+    <div *ngIf="fullname.invalid && (fullname.dirty || fullname.touched)" class="help-block">   
+        <span class="help-block" 
+         *ngIf="fullname.errors.required && fullname.touched">Το πεδίο Ονοματεπώνυμο είναι υποχρεωτικό</span>
+    </div>
+</div>
+
+<label for="subject">Θέμα</label>
+<div class="form-group" [class.has-error]="subject.invalid && (subject.dirty || subject.touched)">
+  <input id="subject" type="text" name="subject" placeholder="Θέμα" class="form-control "
+  [(ngModel)]="model.subject" #subject="ngModel" required subject  />
+    <div *ngIf="subject.invalid && (subject.dirty || subject.touched)" class="help-block">   
+      <span class="help-block" 
+      *ngIf="subject.errors.required && subject.touched">Το πεδίο Θέμα είναι υποχρεωτικό</span>
+    </div>
+</div>
+
+<label for="Email">Email</label>
+<div class="form-group" [class.has-error]="email.invalid &&(email.dirty || email.touched)">
+  <input id="email" type="text" name="email" placeholder="name@example.com" class="form-control "
+  [(ngModel)]="model.email" #email="ngModel" required email  />
+   <div *ngIf="email.invalid && (email.dirty || email.touched)" class="help-block">   
+<span class="help-block" 
+   *ngIf="email.errors.required && email.touched">Το πεδίο email είναι υποχρεωτικό</span>
+<span class="help-block"
+*ngIf="email.errors.email">Λανθασμένη διεύθυνση Email</span>
+</div>
+</div>
+
+<label for="message">Πώς μπορούμε να βοηθήσουμε;</label>
+<div class="form-group">
+  <i><textarea class="form-control" id="message" placeholder="Το μήνυμά σου..." name="message" rows="9"[(ngModel)]="model.message" #message="ngModel" required maxlength="300" [ngClass]="{ 'is-invalid': f.submitted && message.invalid }" required message></textarea></i>
+  <div id="the-count" align="right" style="width: 100%; height: 5px; ">
+      <span id="current">{{counter(message.value)}} </span>
+      <span id="maximum">/300</span>
+    </div>
+  <div *ngIf="message.invalid && (message.dirty || message.touched)" class="help-block">  
+    <span class="help-block" style="color:brown"
+      *ngIf="message.errors.required">Παρακαλώ εισάγετε το μήνυμά σας</span>
+
+  </div>
+    <button type="submit" class="button" [disabled]="!f.form.valid"><b>Αποστολή</b></button>
+  </div>
+
+</form>
+</form>
+</div>

@@ -1,0 +1,59 @@
+<div class="card">
+	<div class="card-body">
+		<b class="descr-title" style="color:#fd9501" > Φίλτρα Αναζήτησης</b>
+		<br>
+		<br>
+		<p> Ταξινόμηση Κατά: 
+		<select [(ngModel)]="selectedSortField">
+        	<option value="price">Τιμή</option>
+        	<option value="date">Ημερομηνία Λήξης</option>
+        	<option *ngIf="!showFirst" value="geo.dist">Απόσταση από μένα</option>
+    	</select>
+    	</p>
+    	<p> Τρόπος Ταξινόμησης:
+    	<select [(ngModel)]="selectedSorting">
+			<option value="ASC">Αύξουσα</option>
+        	<option value="DESC">Φθίνουσα</option>
+    	</select>
+    	<br>
+    	<br>
+    	<p class="descr-subtitle">Απόσταση από μένα</p>
+    	<div *ngIf="showFirst">
+		<button type="button" class="btn btn-primary filter_btn" id="location" (click)="location()" style="border-radius: 9px;
+    width:190px;
+    height:40px;
+    vertical-align: top;
+    color: white;
+    background-color: black;"> Εντοπισμός Τοποθεσίας</button>
+		<br>
+		<br>
+		</div>
+		<div *ngIf="!showFirst">
+		<ng5-slider  [(value)]="value" [options]="options"></ng5-slider>
+		</div>
+		<p class="descr-subtitle">Διάρκεια Προσφοράς</p>
+		
+		<div class="row">
+			<div class="col-xs-5">
+				<ejs-datepicker placeholder='ΑΡΧΗ' (change)='onChange1($event)' [max]='dateValueTo'></ejs-datepicker>
+			</div>
+			<div class="col-xs-2">
+			</div>
+			<div class="col-xs-5">
+				<ejs-datepicker placeholder='ΤΕΛΟΣ' (change)='onChange2($event)' [min]='dateValueFrom'></ejs-datepicker>
+			</div>
+		</div>
+		<br>
+		<p class="descr-subtitle">Αριθμός Προϊόντων ανά σελίδα</p>
+		<ng5-slider [(value)]="value2" [options]="options2"></ng5-slider>
+		<br>
+		<br>
+		<button type="button" class="btn btn-primary filter_btn" (click)="filter()" [disabled]="!isValid" style="border-radius: 9px;
+    width:190px;
+    height:40px;
+    vertical-align: top;
+    color: white;
+    background-color: black;">Εφαρμογή Φίλτρων</button>
+	</div>
+</div>
+

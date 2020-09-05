@@ -1,0 +1,35 @@
+.Footer_inner_left{
+width: 49%;
+Float: left;
+display:inline;
+}
+
+.Footer_inner_right{
+width: 49%;
+Float: right;
+display:inline;
+}
+
+.Footer_inner_center{
+width: 49%;
+Float: right;
+display:inline;
+}
+
+.divider{
+    width:5px;
+    height:5px;
+    display:inline-block;
+}
+ 
+a {
+    color: gray;
+    text-decoration: none;
+}
+
+a:hover 
+{
+     color: whitesmoke; 
+     text-decoration:none; 
+     cursor:pointer;  
+}

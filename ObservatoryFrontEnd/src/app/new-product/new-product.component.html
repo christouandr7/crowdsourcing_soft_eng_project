@@ -1,0 +1,61 @@
+<div align="center" style="min-height: 100vh; max-height: 100%;">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <form class="text-center border border-light p-5" style="padding: 10px; max-width: 500px;">
+    <!--Header-->
+    <p style="font-size: 25px; font-weight: bold;">Προσθήκη Νέων Προϊόντων</p>
+
+    <form name="form" (ngSubmit)="f.form.valid && onSubmit()" #f="ngForm" novalidate>
+
+      <!-- Ονομα -->
+      <div class="form-group" [class.has-error]="pname.invalid && (pname.dirty || pname.touched)">
+        <input id="pname" type="text" name="pname" placeholder="*Όνομα Προϊόντος" class="form-control "
+          [(ngModel)]="product.pname" #pname="ngModel" required pname />
+        <div *ngIf="pname.invalid && (pname.dirty || pname.touched)" class="help-block">
+          <span class="help-block" *ngIf="pname.errors.required && pname.touched">Product name is required</span>
+        </div>
+        <div *ngIf="duplicate" class="help-block">
+            <span class="help-block" style="color:#f44336">Product name already exist</span>
+
+        </div>
+      </div>
+
+      <!--category-->
+      <mat-form-field>
+        <mat-select id="category" name="category" [(ngModel)]="selectedOption3" placeholder="Επιλογή Κατηγορίας"
+          required>
+          <mat-option></mat-option>
+          <mat-option *ngFor="let b of res3" [value]="b">
+            {{b}}
+          </mat-option>
+        </mat-select>
+      </mat-form-field>
+
+
+      <!-- Description-->
+      <div class="form-group">
+        <i><textarea class="form-control" id="description" placeholder="*Περιγραφή Προϊόντος..." name="description" rows="9"
+          [(ngModel)]="product.description" #description="ngModel" required maxlength="300"
+          [ngClass]="{ 'is-invalid': f.submitted && description.invalid }" required description></textarea></i>
+        <div id="the-count" align="right" style="max-width: 100%; max-height: 5px; ">
+          <span id="current">{{counter(description.value)}} </span>
+          <span id="maximum">/300</span>
+        </div>
+        <div *ngIf="description.invalid && (description.dirty || description.touched)" class="help-block">
+          <span class="help-block" style="color:#f44336" *ngIf="description.errors.required">Παρακαλούμε εισάγετε μια
+            μικρή περιγραφή</span>
+        </div>
+      </div>
+
+      <div class="form-group" >
+          <input id="tagsP" type="text" name="tagsP" placeholder="Λέξεις Κλείδια (Για κάθε λέξη αφήστε κενο)"
+            class="form-control " [(ngModel)]="product.tagsP" #tagsP="ngModel" tagsP />
+        </div>
+
+      <div class="form-group">
+        <button class="button" [disabled]="f.form.pristine ||f.form.invalid ">Προσθήκη</button>
+      </div>
+
+    </form>
+  </form>
+</div>

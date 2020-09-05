@@ -1,0 +1,98 @@
+				
+
+				<div *ngIf="status=='success'">
+
+					<div class="card">
+					    	<div>
+								<button type="button" class="button2" id="location" (click)="showAllShops()">Δες στον χάρτη όλα τα καταστήματα</button>
+
+
+								<div id="mapp" align="center" *ngIf="showShops">
+								<div>
+									<agm-map [zoom]="16"  [latitude]="lat" [longitude]="lng" [fitBounds]="true">
+										<agm-marker [latitude]="lo.lat" [longitude]="lo.lng" [agmFitBounds]="true" *ngFor = "let lo of loc;">
+											<agm-info-window>
+												<strong>{{lo.name}}</strong>
+	           									<br>
+	            								<br>{{lo.address}}
+	            							</agm-info-window>
+										</agm-marker>
+										<agm-marker *ngIf = "showMyLocationMarker" [latitude]="ConvertString(query['latitude'])" [longitude]="ConvertString(this.query['longitude'])" [iconUrl] ="icon" [agmFitBounds]="true">
+											<agm-info-window>
+												<strong>{{mylocation}}</strong>
+	            							</agm-info-window>
+										</agm-marker>
+									</agm-map>
+								</div>
+							</div>
+							</div>
+						</div>
+
+					<div class="card" *ngFor="let p of results">
+						<div class="card-body">
+							<h3>Κατάστημα: {{p.shopName}}</h3>
+							<h4>Τιμή: {{p.price}}€</h4>
+							<h5>Διεύθυνση: {{p.shopAddress}}</h5>
+							<h5>Από {{createDate(p.dateFrom)}} Μέχρι {{createDate(p.dateTo)}}</h5>
+							<h5 *ngIf="showDist">Απόσταση: {{p.shopDist.toFixed(2)}} miles</h5>
+							<br>
+							<div class="btn-group">
+								 <div align="center">
+								<button type="button" class="button2" (click)="showMap(p.shopId)">Δες την τοποθεσία
+								στον χάρτη</button>
+
+								<button type="button" (click)="deletePrice(p._id)"
+								class="btn btn-danger" style="border-radius: 9px; height:40px;">Δεν ισχύει</button>
+
+							</div>	
+							</div>
+							<div id="mapp" align="center" *ngIf="showMaState[showMa.indexOf(p.shopId)]">
+								<div>
+									<agm-map [zoom]="16"  [latitude]="lat" [longitude]="lng" [fitBounds]="true">
+										<agm-marker [latitude]="lat" [longitude]="lng" [agmFitBounds]="true">
+											<agm-info-window>
+												<strong>{{p.shopName}}</strong>
+	           										<br>
+	            									<br>{{p.shopAddress}}
+	            							</agm-info-window>
+										</agm-marker>
+										<agm-marker [latitude]="ConvertString(query['latitude'])" [longitude]="ConvertString(this.query['longitude'])" [iconUrl] ="icon" [agmFitBounds]="true">
+											<agm-info-window>
+												<strong>{{mylocation}}</strong>
+	            							</agm-info-window>
+										</agm-marker>
+									</agm-map>
+								</div>
+							</div>
+						</div>
+					</div>
+					<div class="page">
+						<button [disabled]="this.query['page']==1" class="button3" (click)="prevPrice()" style="width: 100%;">Previous</button>
+						<button [disabled]="!next" type="button" (click)="nextPrice()"class="button3" style="width: 100%;">Next</button>
+					</div>
+					<div>
+							<p style="width: 100%;">Page {{this.query['page']}}</p>
+						</div>
+				</div>
+
+
+
+				<div align="center" *ngIf="status=='no_results'">
+					<div style="height: 100vh;">
+						<h1 style="background-color: #E6E6FA; border-radius: 25px; width: 70%; padding-bottom: 15px; padding-top: 15px;">Κανένα
+						Αποτέλεσμα :(</h1>
+					</div>
+				</div>
+
+				<div align="center" *ngIf="status=='error'">
+					<div style="height: 100vh;">
+						<h1 style="background-color: #E6E6FA; border-radius: 25px; width: 70%; padding-bottom: 15px; padding-top: 15px;">{{ errormessage }}</h1>
+					</div>
+				</div>
+
+
+				<div align="center" *ngIf="status=='loading'">
+					<div style="height: 100vh;">
+						<h1 style="background-color: #E6E6FA; border-radius: 25px; width: 70%; padding-bottom: 15px; padding-top: 15px;">Loading</h1>
+					</div>
+				</div>

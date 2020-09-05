@@ -1,0 +1,64 @@
+<div align="center" style="min-height: 100vh; max-height: 100%;">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <form class="text-center border border-light p-5" style="padding: 10px; max-width: 500px;">
+    <!--Header-->
+    <p style="font-size: 25px; font-weight: bold;">Προσθήκη Νέου Καταστήματος</p>
+
+    <form name="form" (ngSubmit)="f.form.valid && onSubmit()" #f="ngForm" novalidate>
+
+<!--Όνομα-->
+
+      <div class="form-group" [class.has-error]="sname.invalid && (sname.dirty || sname.touched)">
+        <input id="sname" type="text" name="sname" placeholder="*Όνομα Καταστήματος" class="form-control "
+          [(ngModel)]="shop.sname" #sname="ngModel" required sname />
+        <div *ngIf="sname.invalid && (sname.dirty || sname.touched)" class="help-block">
+          <span class="help-block" *ngIf="sname.errors.required && sname.touched">Shop Name is required</span>
+        </div>
+        <div *ngIf="duplicate" class="help-block">
+          <span class="help-block" style="color:#f44336">Shop Name already exist</span>
+      </div>
+      </div>
+      <!--shop tags-->
+      <div class="form-group" >
+        <input id="tagsS" type="text" name="tagsS" placeholder="Λέξεις Κλείδια (Για κάθε λέξη αφήστε κενο)"
+          class="form-control " [(ngModel)]="shop.tagsS" #tagsS="ngModel" tagsS />
+      </div>
+
+      <div class="form-group" [class.has-error]="address.invalid && (address.dirty || address.touched)">
+        <input id="address" type="text" name="address" placeholder="*Διεύθυνση" class="form-control "
+          [(ngModel)]="shop.address" #address="ngModel" required address />
+        <div *ngIf="address.invalid && (address.dirty || address.touched)" class="help-block">
+          <span class="help-block" *ngIf="address.errors.required && address.touched">Address is required</span>
+        </div>
+      </div>
+
+      <div class="form-group" *ngIf="addr">
+        <button class="button" (click)="showMap() ">Εμφάνιση Χάρτη</button>
+      </div>
+
+
+      <div id="mapp" style="max-height: 500px; max-width: 100%;" align="center" *ngIf="showMapBoolean">
+
+
+        <div class="btn-group">
+          <button type="button" class="button2" (click)="findAddress()">Αναζήτηση Καταστήματος στον χάρτη</button>
+
+          <button type="button" class="button" (click)="refresh()"
+            class="btn btn-danger" style="height: 40px">Refresh Map</button>
+        </div>
+
+   <br>
+   <br>
+        <agm-map style="height: 400px; width: 100%;" [zoom]="14" [latitude]="lat" [longitude]="lng"
+          (mapClick)="onChosenLocation($event)" [usePanning]="true">
+          <agm-marker [latitude]="lat" [longitude]="lng"></agm-marker>
+        </agm-map>
+<br>
+      </div>
+      <div class="form-group">
+        <button class="button" [disabled]="(f.form.pristine ||f.form.invalid) ">Προσθήκη Καταστήματος</button>
+      </div>
+    </form>
+  </form>
+</div>

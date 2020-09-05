@@ -1,0 +1,66 @@
+<div align="center" style="height: 100vh;">
+
+
+<div class="container">
+	<div class="row">
+		<img src="../../assets/logo.png" class="center">
+	<form id="search">
+		<b style="text-align: center;">
+		<input type="text" id="button" placeholder="Αναζήτηση προϊόντος" [(ngModel)]="searchAttribute" name="searchAttribute"
+		style="  border-radius: 10px;">
+		<button type="submit" id="butt1index" (click)="search(searchAttribute)" style="  border-radius: 10px; color:white"> Αναζήτηση</button>
+		</b>
+		
+	<br>
+	<br>
+	<br>
+	<br>
+
+	</form>
+	</div>
+
+
+	<div class="row">
+		<section>
+
+			<table style="width: 75%; min-width: 400px;" height="auto" bgcolor="oldlace" align="center">
+					<tr>
+						<td align="center" bgcolor="black" colspan="3" style="padding: 10px; width: 20px; font-size: 20px; " ><font color=#e67300><b>Γρήγορη Αναζήτηση</b></font></td>
+					</tr>
+					<tr>
+						<td align="center" style="padding-bottom: 10px; background-color: #333333; width: 33%; font-size: 15px;" ><strong><br><a style="color:#e67300" routerLink='/searchresults/Σαπούνια Σαμπουάν'>Σαμπουάν - Σαπούνια</a></strong></td>
+						<td align="center" style="padding-bottom: 10px; background-color: #4d4d4d; width: 33%; font-size: 15px;"><strong><br><a style="color:#e67300" routerLink='/searchresults/Στόμα'> Στοματική Υγιεινή</a></strong></td>
+						<td align="center" style="padding-bottom: 10px; background-color: #333333; width: 33%; font-size: 15px;"><strong><br><a style="color:#e67300" routerLink='/searchresults/Αποσμητικό Άρωμα'>Άλλα Προϊόντα</a></strong></td>
+					</tr>
+					<tr>
+						<td align="center" style="background-color: #333333;"><a routerLink='/searchresults/Σαπούνια Σαμπουάν'><img src="../../assets/s4.jpg" width="130px" height="110px" style="border-radius: 20%; "></a></td>
+						<td align="center" style="background-color: #4d4d4d;"><a routerLink='/searchresults/Στόμα'><img src="../../assets/s3.jpg" width="130px" height="110px" style="border-radius: 20%;"></a></td>
+						<td align="center" style="background-color: #333333;"><a routerLink='/searchresults/Αποσμητικό Άρωμα'><img src="../../assets/s5.jpg" width="130px" height="110px" style="border-radius: 20%;"></a></td>
+					</tr>
+					<tr>
+						<td align="center" style="background-color: #333333;">
+							<p style="text-align: center;"><a style="color:#ece9dc" routerLink='/searchresults/Σαπούνια'>Σαπούνια</a><p>
+							<p style="text-align: center;"><a style="color:#ece9dc" routerLink='/searchresults/Σαμπουάν'>Σαμπουάν</a><p>
+						</td >
+						<td align="center" style="background-color: #4d4d4d;">
+							<br>
+							<p style="text-align: center;"><a style="color:#ece9dc" routerLink='/searchresults/Οδοντόκρεμα'>Οδοντόκρεμες</a></p>
+							<p style="text-align: center;"><a style="color:#ece9dc" routerLink='/searchresults/Οδοντόβουρτσα'>Οδοντόβουρτσες</a></p>
+							<p style="text-align: center;"><a style="color:#ece9dc" routerLink='/searchresults/Διαλύματα'>Διαλύματα</a></p>
+						</td>
+						<td align="center" style="background-color: #333333;">
+							<p style="text-align: center;"><a style="color:#ece9dc" routerLink='/searchresults/Αποσμητικό'>Αποσμητικά</a></p>
+							<p style="text-align: center;"><a style="color:#ece9dc" routerLink='/searchresults/Άρωμα'>Αρώματα</a></p>
+						</td>
+
+					</tr>
+				</table>
+	
+
+			</section>
+			
+
+
+	</div>
+
+</div>

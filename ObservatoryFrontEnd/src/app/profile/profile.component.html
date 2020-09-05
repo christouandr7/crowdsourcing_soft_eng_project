@@ -1,0 +1,234 @@
+<div align="center" style="height: 100vh;">
+
+<div align="center" style="height:auto;">
+  <form class="text-center border border-light p-5" style="padding: 10px; width: 500px;">
+    <div *ngIf="!edit">
+
+      <p style="font-size: 25px; font-weight: bold; color:#fd9501">Το Προφίλ μου</p>
+<br>
+      <div class="row" *ngIf="model">
+        <b class="col-xs-2" align="left">Username:</b>
+        <div class="col-xs-10"><input type="text" name="username" class="form-control" name="username"
+            class="form-control" [(ngModel)]="model.username" #username="ngModel" username readonly></div>
+      </div>
+      <br>
+
+      <div class="row" *ngIf="model">
+        <b class="col-xs-2" align="left">Όνομα:</b>
+        <div class="col-xs-10" [class.has-error]="firstname.invalid && (firstname.dirty || firstname.touched)"><input
+            type="text" name="fname" class="form-control" name="firstname" class="form-control"
+            [(ngModel)]="model.firstname" #firstname="ngModel" firstname readonly></div>
+        <div *ngIf="firstname.invalid && (firstname.dirty || firstname.touched)" class="help-block">
+          <span class="help-block" *ngIf="firstname.errors.required && firstname.touched">Το πεδίο είναι
+            υποχρεωτικό</span>
+        </div>
+      </div>
+      <br>
+
+      <div class="row" *ngIf="model">
+        <b class="col-xs-2" align="left">Επίθετο:</b>
+        <div class="col-xs-10" [class.has-error]="lastname.invalid && (lastname.dirty || lastname.touched)"><input
+            id="lastname" type="text" name="lastname" placeholder="Επίθετο" class="form-control "
+            [(ngModel)]="model.lastname" #lastname="ngModel" required readonly />
+          <div *ngIf="lastname.invalid && (lastname.dirty || lastname.touched)" class="help-block">
+            <span class="help-block" *ngIf="lastname.errors.required && lastname.touched">Το πεδίο είναι
+              υποχρεωτικό</span>
+          </div>
+        </div>
+      </div>
+
+      <br>
+      <!--DateofBirth-->
+      <div class="row" *ngIf="model">
+        <b class="col-xs-4" align="left">Ημ.Γεννήσεως:</b>
+        <div class="col-xs-6" align="right">
+          <ejs-datepicker #date_of_birth="ngModel" id='datepicker' name="date_of_birth"
+            placeholder='Ημερομηνία Γέννησης' [value]='model.date_of_birth' [min]='minDate' [max]='maxDate'
+            [(ngModel)]="model.date_of_birth" disabled></ejs-datepicker>
+        </div>
+      </div>
+
+      <br>
+
+      <div class="row" *ngIf="model">
+        <b class="col-xs-2" align="left">Τηλέφωνο:</b>
+        <div class="col-xs-10" [class.has-error]="phone_num.invalid &&(phone_num.dirty || phone_num.touched)"> <input
+            id="phone_num" type="text" placeholder="+30" [textMask]="{mask: mask}" class="form-control" name="phone_num"
+            [(ngModel)]="model.phone_num" #phone_num="ngModel" required minlength="10" readonly phone_num />
+          <div *ngIf="phone_num.invalid && (phone_num.dirty || phone_num.touched)" class="help-block">
+            <span class="help-block" *ngIf="phone_num.errors.required && phone_num.touched">Το πεδίο είναι
+              υποχρεωτικό</span>
+          </div>
+        </div>
+      </div>
+      <br>
+
+      <div class="row" *ngIf="model">
+        <b class="col-xs-2" align="left">Email:</b>
+        <div class="col-xs-10" [class.has-error]="email.invalid &&(email.dirty || email.touched)">
+          <input id="email" type="text" name="email" placeholder="name@example.com" class="form-control "
+            [(ngModel)]="model.email" #email="ngModel" readonly email />
+          <div *ngIf="email.invalid && (email.dirty || email.touched)" class="help-block">
+            <span class="help-block" *ngIf="email.errors.required && email.touched">Το πεδίο είναι υποχρεωτικό</span>
+            <span class="help-block" *ngIf="email.errors.email">Λανθασμένη Ηλεκτρονική Διεύθυνση</span>
+          </div>
+        </div>
+      </div>
+      <br>
+      <div class="row" *ngIf="model">
+        <b class="col-xs-4" align="left">Φύλο:</b>
+        <div class="col-xs-6">
+          <select class="mdb-select" style="width: 50%; height: 25px; " #gender="ngModel" name="gender"
+            [(ngModel)]="model.gender" disabled>
+            <option value="" disabled selected hidden>Φύλο</option>
+            <option value="M">Άνδρας</option>
+            <option value="F">Γυναίκα</option>
+          </select>
+        </div>
+      </div>
+
+      <br>
+
+    </div>
+    <div *ngIf="edit">
+      <p style="font-size: 25px; font-weight: bold; color:#fd9501">Επεξεργασία Προφίλ</p>
+      <br>
+      <form name="form" (ngSubmit)="f.form.valid && onSubmit()" #f="ngForm" novalidate>
+        <div class="row">
+          <div class="col-xs-2" align="left">*Username:</div>
+          <div class="col-xs-10"><input type="text" name="username" class="form-control" name="username"
+              class="form-control" [(ngModel)]="model.username" #username="ngModel" username readonly></div>
+        </div>
+        <br>
+
+    <!--    <div class="row">
+          <div class="col-xs-2" align="left">Όνομα:</div>
+          <div class="col-xs-10" [class.has-error]="firstname.invalid && (firstname.dirty || firstname.touched)">
+            <input type="text" id="firstname" class="form-control" name="firstname" class="form-control"
+              [(ngModel)]="model.firstname" #firstname="ngModel" firstname required></div>
+          <div *ngIf="firstname.invalid && (firstname.dirty || firstname.touched)" class="help-block">
+            <span class="help-block" *ngIf="firstname.errors.required && firstname.touched">Το πεδίο είναι
+              υποχρεωτικό</span>
+          </div>
+        </div>
+        <br>
+      -->
+      <div class="row">
+        <div class="col-xs-2" align="left">Όνομα:</div>
+        <div class="col-xs-10" [class.has-error]="firstname.invalid && (firstname.dirty || firstname.touched)"><input
+            id="firstname" type="text" name="firstname" placeholder="Όνομα" class="form-control "
+            [(ngModel)]="model.firstname" #firstname="ngModel" required firstname />
+          <div *ngIf="firstname.invalid && (firstname.dirty || firstname.touched)" class="help-block">
+            <span class="help-block" *ngIf="firstname.errors.required && firstname.touched">Το πεδίο είναι
+              υποχρεωτικό</span>
+          </div>
+        </div>
+      </div>
+      <br>
+
+        <div class="row">
+          <div class="col-xs-2" align="left">Επίθετο:</div>
+          <div class="col-xs-10" [class.has-error]="lastname.invalid && (lastname.dirty || lastname.touched)"><input
+              id="lastname" type="text" name="lastname" placeholder="Επίθετο" class="form-control "
+              [(ngModel)]="model.lastname" #lastname="ngModel" required lastname />
+            <div *ngIf="lastname.invalid && (lastname.dirty || lastname.touched)" class="help-block">
+              <span class="help-block" *ngIf="lastname.errors.required && lastname.touched">Το πεδίο είναι
+                υποχρεωτικό</span>
+            </div>
+          </div>
+        </div>
+        <br>
+
+      <!--DateofBirth-->
+      <div class="row">
+        <div class="col-xs-4" align="left">*Ημ.Γεννήσεως:</div>
+        <div class="col-xs-6" align="right">
+          <ejs-datepicker #date_of_birth="ngModel" id='datepicker' name="date_of_birth"
+            placeholder='Ημερομηνία Γέννησης' [value]='model.date_of_birth' [min]='minDate' [max]='maxDate'
+            [(ngModel)]="model.date_of_birth" disabled></ejs-datepicker>
+        </div>
+      </div>
+      <br>
+        <div class="row">
+          <div class="col-xs-2" align="left">Τηλέφωνο:</div>
+          <div class="col-xs-10" [class.has-error]="phone_num.invalid &&(phone_num.dirty || phone_num.touched)">
+            <input id="phone_num" type="text" placeholder="+30" [textMask]="{mask: mask}" class="form-control"
+              name="phone_num" [(ngModel)]="model.phone_num" #phone_num="ngModel" required minlength="10" required
+              phone_num />
+            <div *ngIf="phone_num.invalid && (phone_num.dirty || phone_num.touched)" class="help-block">
+              <span class="help-block" *ngIf="phone_num.errors.required && phone_num.touched">Το πεδίο είναι
+                υποχρεωτικό</span>
+            </div>
+          </div>
+        </div>
+        <br>
+
+        <div class="row">
+          <div class="col-xs-2" align="left">Email:</div>
+          <div class="col-xs-10" [class.has-error]="email.invalid &&(email.dirty || email.touched)">
+            <input id="email" type="text" name="email" placeholder="name@example.com" class="form-control "
+              [(ngModel)]="model.email" #email="ngModel" required email />
+            <div *ngIf="email.invalid && (email.dirty || email.touched)" class="help-block">
+              <span class="help-block" *ngIf="email.errors.required && email.touched">Το πεδίο είναι
+                υποχρεωτικό</span>
+              <span class="help-block" *ngIf="email.errors.email">Λανθασμένη Ηλεκτρονική Διεύθυνση</span>
+            </div>
+          </div>
+        </div>
+        <br>
+
+        <div class="row">
+          <div class="col-xs-4" align="left">*Φύλο:</div>
+          <div class="col-xs-6" >
+            <select class="mdb-select" style="width: 100%; height: 30px; " #gender="ngModel" name="gender"
+              [(ngModel)]="model.gender" disabled>
+              <option value="" disabled selected hidden>Φύλο</option>
+              <option value="M" >Άνδρας</option>
+              <option value="F">Γυναίκα</option>
+            </select>
+          </div>
+        </div>
+
+        <hr>
+
+        <mat-checkbox labelPosition="before" [(ngModel)]="checked" (change)="reset()" #isChecked="ngModel" name="isChecked" aria-label="Αλλαγή Κωδικού Πρόσβασης">
+            Αλλαγή Κωδικού Πρόσβασης
+        </mat-checkbox>
+        <div *ngIf="checked">
+        <div class="form-group" [class.has-error]="password.invalid && (password.dirty || password.touched)">
+          <input type="password" id="password" placeholder="Kωδικός Πρόσβασης" class="form-control" name="password"
+            [(ngModel)]="newPass" #password="ngModel" required minlength="6"
+            [ngClass]="{ 'is-invalid': f.submitted && password.invalid }" required password />
+          <div *ngIf="password.invalid && (password.dirty || password.touched)" class="help-block">
+            <span class="help-block" *ngIf="password.errors.required">Το πεδίο είναι υποχρεωτικό</span>
+            <span class="help-block" *ngIf="password.errors.minlength">Ο Κωδικός Πρόσβασης πρέπει να είναι τουλάχιστον
+              6 χαρακτήρες</span>
+          </div>
+        </div>
+
+        <!--Confirm Password-->
+        <div class="form-group" [class.has-error]="confirmPassword.touched && confirmPassword.invalid">
+          <input type="password" name="confirmPassword" appConfirmEqualValidator="password" required
+            placeholder="Επιβεβαίωση Κωδικού Πρόσβασης" id="confirmPassword" class="form-control"
+            [(ngModel)]="confPass" #confirmPassword="ngModel">
+          <span class="help-block" *ngIf="confirmPassword.touched && confirmPassword.errors?.required">Επιβεβαιώστε
+            τον Κωδικό Πρόσβασης</span>
+          <span class="help-block" *ngIf="confirmPassword.touched && confirmPassword.errors?.notEqual &&
+          !confirmPassword.errors?.required">Οι Κωδικοί Πρόσβασης δεν είναι ίδιοι</span>
+        </div>
+      </div>
+        <br>
+        <div class="form-group">
+          <button class="button2" [disabled]="f.form.invalid">Αποθήκευση</button>
+        </div>
+
+      </form>
+    </div>
+    <br>
+    <br>
+
+    <button *ngIf="!edit" class="button" (click)="nowEdit()"> <p style = "font-weight: bold; "><span class="glyphicon glyphicon-pencil" ></span> &nbsp;Edit</p> </button>
+
+  </form>
+
+</div>

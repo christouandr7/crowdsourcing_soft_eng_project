@@ -1,0 +1,35 @@
+table, th, td {
+  border: 2px solid black;
+}
+
+tr {
+
+	background-color: #c3c3c3;
+
+
+}
+tr:hover {
+          background-color: #ffcc80;
+        }
+
+button {
+    width:160px;
+    height:60px;
+    vertical-align: top;
+}
+
+.button5 {
+  background-color: Transparent;
+  color: #e67300;
+}
+
+.button5:hover {background-color: #c3c3c3;}
+
+.button2 {
+border-radius: 9px;
+    width:80px;
+    height:40px;
+    color: white;
+    background-color: black;
+
+}

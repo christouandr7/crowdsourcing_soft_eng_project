@@ -1,0 +1,243 @@
+<div align="center" style="min-height: 100vh;">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<div align="center">
+  <h2 style = "font-size: 2.5vw; color:#fd9501">Καλωσόρισες στη σελίδα διαχείρισης, {{model.firstname}}!</h2>
+</div>
+<br>
+<br>
+       <div align="center">
+            <button class="button button5" (click)="showAllProducts(0,20,1)" style="font-size: 15px;"><b>Όλα τα προϊόντα</b></button>
+            <button class="button button5" (click)="showAllPrices(0,20,1)" style="font-size: 15px;"><b>Όλες οι ενεργές τιμές</b></button>
+            <button class="button button5" (click)="showAllShops(0,20,1)" style="font-size: 15px;"><b>Όλα τα καταστήματα</b></button>
+            <button class="button button5" (click)="showAllProductsWithdrawn(0,20,1)" style="font-size: 15px;"><b>Όλα τα withdrawn προϊόντα</b></button>
+            <button class="button button5" (click)="showAllPricesWithdrawn(0,20,1)" style="font-size: 15px;"><b>Όλες οι withdrawn τιμές</b></button>
+            <button class="button button5" (click)="showAllUsers()" style="font-size: 15px;"><b>Όλοι οι χρήστες</b></button>
+            <button class="button button5" (click)="showAllMessages()" style="font-size: 15px;"><b>Όλα τα μηνύματα</b></button>
+        </div>
+
+
+
+ 
+          <div id="products" align="center" *ngIf="show[0]" style="overflow-x:auto;">
+            <br>
+        <table style="table-layout: fixed; max-width: 1000px; margin-left: 10px; margin-right: 10px;" >
+          <tr style="background-color: #5e5d5d; font-size: 16px;">
+            <th style="text-align: center; max-width: 20%; color:#e67300"><b>ID</b></th>
+            <th style="text-align: center; color:#e67300"><b>Όνομα προϊόντος</b></th> 
+            <th style="text-align: center; max-width: 15%; color:#e67300"><b>Κατηγορία</b></th>
+            <th style="text-align: center; max-width: 10%; color:#e67300"><b>Withdrawn</b></th>
+          <th style="max-width: 10%; text-align: center; color:#e67300"><b> &nbsp; Διαγραφή</b></th>
+
+          </tr>
+        <tr *ngFor="let pro of products"> 
+              <th style="text-align: center; max-width: 20%;">{{ pro._id }}</th>
+              <th style="text-align: center;">{{ pro.name }}</th>
+              <th style="text-align: center; max-width: 15%">{{ pro.category }}</th>
+              <th style="text-align: center; max-width: 8%">{{ pro.withdrawn }}</th>
+          <th style="max-width: 10%;"><button class="btn btn-danger" (click)="deleteProduct(pro._id)" style="max-width: 100%;">Διαγραφή</button></th>
+          </tr>
+        </table>
+            <br>
+              <div class="btn-group mr-2 justify-content-center" role="group" aria-label="First group">
+                <button [disabled]="!prev" class="button2" (click)="prevPr()" style="max-width: 100%;">Previous</button>
+                <button [disabled]="!next" type="button" (click)="nextPr()"class="button2">Next</button>
+              </div>
+              <label padding-left="10px">Page {{c}}</label>
+</div>
+          <div id="prices" align="center" *ngIf="show[1]" style="overflow-x:auto;">
+            <br>
+        <table style="table-layout: fixed; max-width: 1000px; margin-left: 10px; margin-right: 10px;" >
+          <tr style="background-color: #5e5d5d; font-size: 16px;">
+            <th style="text-align: center; color:#e67300"><b>Product Name</b></th>
+            <th style="text-align: center; max-width: 15%; color:#e67300"><b>Όνομα Καταστήματος</b></th> 
+            <th style="text-align: center; max-width: 30%; color:#e67300"><b>&nbsp;Τιμή&nbsp;</b></th>
+            <th style="text-align: center; max-width: 10%; color:#e67300"><b> Withdrawn</b></th>
+            <th style="text-align: center; max-width: 20%; color:#e67300"><b>Ισχύει Μέχρι</b></th>
+          <th style="max-width: 10%; text-align: center; color:#e67300"><b>Διαγραφή</b></th>
+
+          </tr>
+        <tr *ngFor="let pri of prices"> 
+              <th style="text-align: center;">{{ pri.productName }}</th>
+              <th style="text-align: center; max-width: 15%">{{ pri.shopName }}</th>
+              <th style="text-align: center; max-width: 10%">{{ pri.price }}</th>
+              <th style="text-align: center; max-width: 10%">{{ pri.withdrawn }}</th>
+              <th style="text-align: center; max-width: 20%">{{ pri.dateTo }}</th>
+          <th style="max-width: 10%;"><button class="btn btn-danger" (click)="deletePrice(pri._id)" style="max-width: 100%;">Διαγραφή</button></th>
+          </tr>
+        </table>
+            <br>
+           
+
+              <div class="btn-group mr-2 justify-content-center" role="group" aria-label="First group">
+                <button [disabled]="!prev" class="button2" (click)="prevPrice()" style="max-width: 100%;">Previous</button>
+                <button [disabled]="!next" type="button" (click)="nextPrice()"class="button2">Next</button>
+              </div>
+              <label padding-left="10px">Page {{c}}</label>
+          </div>
+
+
+           <div id="shops" align="center" *ngIf="show[2]" style="overflow-x:auto;">
+            <br>
+        <table style="table-layout: fixed; max-width: 1000px; margin-left: 10px; margin-right: 10px;" >
+          <tr style="background-color: #5e5d5d; font-size: 16px;">
+            <th style="text-align: center; max-width: 15%; color:#e67300"><b>Όνομα καταστήματος</b></th> 
+            <th style="text-align: center; color:#e67300"><b>Διεύθυνση Καταστήματος</b></th>
+            <th style="text-align: center; max-width: 10%; color:#e67300"><b>Withdrawn</b></th>
+          <th style="max-width: 10%; text-align: center; color:#e67300"><b>Διαγραφή</b></th>
+
+          </tr>
+        <tr *ngFor="let sho of shops"> 
+              <th style="text-align: center; max-width: 20%">{{ sho.name }}</th>
+              <th style="text-align: center;">{{ sho.address }}</th>
+              <th style="text-align: center; max-width: 10%">{{ sho.withdrawn }}</th>
+          <th style="max-width: 10%;"><button class="btn btn-danger" (click)="deleteShop(sho._id)" style="max-width: 100%;">Διαγραφή</button></th>
+          </tr>
+        </table>
+            <br>
+            <div class="btn-group mr-2 justify-content-center" role="group" aria-label="First group">
+              <button [disabled]="!prev" class="button2" (click)="prevShp()" style="max-width: 100%;">Previous</button>
+              <button [disabled]="!next" type="button" (click)="nextShp()"class="button2">Next</button>
+            </div>
+            <label padding-left="10px">Page {{c}}</label>
+          </div>
+
+
+          <div id="productsW" align="center" *ngIf="show[3]" style="overflow-x:auto;">
+            <br>
+        <table style="table-layout: fixed; max-width: 1000px; margin-left: 10px; margin-right: 10px;" >
+          <tr style="background-color: #5e5d5d; font-size: 16px;">
+            <th style="text-align: center; max-width: 20%; color:#e67300"><b>ID</b></th>
+            <th style="text-align: center; color:#e67300"><b>Όνομα προϊόντος</b></th> 
+            <th style="text-align: center; max-width: 15%; color:#e67300"><b>Κατηγορία</b></th>
+            <th style="text-align: center; max-width: 10%; color:#e67300"><b>Withdrawn</b></th>
+          <th style="max-width: 10%; text-align: center; color:#e67300"><b>Διαγραφή</b></th>
+
+          </tr>
+        <tr *ngFor="let proW of withdrawnProducts"> 
+              <th style="text-align: center; max-width: 20%;">{{ proW._id }}</th>
+              <th style="text-align: center;">{{ proW.name }}</th>
+              <th style="text-align: center; max-width: 15%">{{ proW.category }}</th>
+              <th style="text-align: center; max-width: 8%">{{ proW.withdrawn }}</th>
+          <th style="max-width: 10%;"><button class="btn btn-danger" (click)="deleteProductW(proW._id)" style="max-width: 100%;">Διαγραφή</button></th>
+          </tr>
+        </table>
+            <br>
+
+            <div class="btn-group mr-2 justify-content-center" role="group" aria-label="First group">
+              <button [disabled]="!prev" class="button2" (click)="prevWithdPr()" style="max-width: 100%;">Previous</button>
+              <button [disabled]="!next" type="button" (click)="nextWithdPr()"class="button2">Next</button>
+            </div>
+            <label padding-left="10px">Page {{c}}</label>
+          </div>
+
+
+
+          <div id="pricesW" align="center" *ngIf="show[4]" style="overflow-x:auto;">
+            <br>
+        <table style="table-layout: fixed; max-width: 1000px; margin-left: 10px; margin-right: 10px;" >
+          <tr style="background-color: #5e5d5d; font-size: 16px;">
+            <th style="text-align: center; color:#e67300"><b>Product Name</b></th>
+            <th style="text-align: center; max-width: 15%; color:#e67300"><b>Όνομα Καταστήματος</b></th> 
+            <th style="text-align: center; max-width: 10%; color:#e67300"><b>Τιμή</b></th>
+            <th style="text-align: center; max-width: 10%; color:#e67300"><b>Withdrawn</b></th>
+            <th style="text-align: center; max-width: 20%; color:#e67300"><b>Ισχύει Μέχρι</b></th>
+          <th style="max-width: 10%; text-align: center; color:#e67300"><b>Διαγραφή</b></th>
+
+          </tr>
+        <tr *ngFor="let priW of withdrawnPrices"> 
+              <th style="text-align: center;">{{ priW.productName }}</th>
+              <th style="text-align: center; max-width: 15%">{{ priW.shopName }}</th>
+              <th style="text-align: center; max-width: 10%">{{ priW.price }}</th>
+              <th style="text-align: center; max-width: 10%">{{ priW.withdrawn }}</th>
+              <th style="text-align: center; max-width: 20%">{{ priW.dateTo }}</th>
+          <th style="max-width: 10%;"><button class="btn btn-danger" (click)="deletePriceW(priW._id)" style="max-width: 100%;">Διαγραφή</button></th>
+          </tr>
+        </table>
+            <br>
+
+            <div class="btn-group mr-2 justify-content-center" role="group" aria-label="First group">
+              <button [disabled]="!prev" class="button2" (click)="prevWithdPrice()" style="max-width: 100%;">Previous</button>
+              <button [disabled]="!next" type="button" (click)="nextWithdPrice()"class="button2">Next</button>
+            </div>
+            <label padding-left="10px">Page {{c}}</label>
+          </div>
+
+
+          <div id="users" align="center" *ngIf="show[5]" style="overflow-x:auto;">
+            <br>
+        <table style="table-layout: fixed; max-width: 1000px; margin-left: 10px; margin-right: 10px;" >
+          <tr style="background-color: #5e5d5d; font-size: 16px;">
+            <th style="text-align: center; color:#e67300"><b>Ψευδώνυμο</b></th>
+            <th style="text-align: center; max-width: 15%; color:#e67300"><b>Όνομα</b></th> 
+            <th style="text-align: center; max-width: 10%; color:#e67300"><b>Επώνυμο</b></th>
+            <th style="text-align: center; max-width: 10%; color:#e67300"><b>Email</b></th>
+            <th style="text-align: center; max-width: 20%; color:#e67300"><b>Τηλέφωνο</b></th>
+            <th style="max-width: 10%; text-align: center; color:#e67300"><b>Admin</b></th>
+            <th style="max-width: 10%; text-align: center; color:#e67300"><b>Διαγραφή</b></th>
+          </tr>
+
+        <tr *ngFor="let u of users"> 
+              <th style="text-align: center;">{{ u.username }}</th>
+              <th style="text-align: center; max-width: 15%">{{ u.firstname }}</th>
+              <th style="text-align: center; max-width: 10%">{{ u.lastname }}</th>
+              <th style="text-align: center; max-width: 10%">{{ u.email }}</th>
+              <th style="text-align: center; max-width: 20%">{{ u.phone_num }}</th>
+              <th style="text-align: center; max-width: 20%"><input type="checkbox" name="adm" class="form-check-input" [(ngModel)]= "u.admin" (change)="updateUser(u._id,u.admin)"></th>
+              <th style="max-width: 10%;"><button class="btn btn-danger" (click)="deleteUser(u._id)" style="max-width: 100%;">Διαγραφή</button></th>
+          </tr>
+        </table>
+            <br>
+
+          </div>
+
+
+          <div id="msgs" align="center" *ngIf="show[6]" style="overflow-x:auto;">
+            <br>
+        <table style="table-layout: fixed; max-width: 1000px; margin-left: 10px; margin-right: 10px;" >
+          <tr style="background-color: #5e5d5d; font-size: 16px;">
+            <th style="text-align: center; max-width: 25%; color:#e67300"><b>Ονοματεπώνυμο</b></th>
+            <th style="text-align: center; color:#e67300"><b>Email Address</b></th> 
+            <th style="text-align: center; max-width: 25%; color:#e67300"><b>Θέμα</b></th>
+          <th style="max-width: 15%; text-align: center; color:#e67300"><b>Προβολή</b></th>
+
+          </tr>
+        <tr *ngFor="let msg of messages"> 
+              <th style="text-align: center; max-width: 25%;">{{ msg.fullname }}</th>
+              <th style="text-align: center;">{{ msg.email }}</th>
+              <th style="text-align: center; max-width: 25%;">{{ msg.subject }}</th>
+          <th style="max-width: 15%;"><button class="btn btn-info" (click)="showMessage(msg._id,msg.message,msg.fullname,msg.email)" style="max-width: 100%;">Προβολή</button></th>
+          </tr>
+        </table>
+            <br>
+
+          </div>
+
+
+            <div id="msg" align="center" *ngIf="showMsg" style="overflow-x:auto;">
+        <h4>Αποστολέας: {{msgName}}</h4> 
+        <h4>Email: {{msgEmail}}</h4> 
+        <div align="center" style="background-color: papayawhip; border-radius: 25px; height: 100px; max-width: 380px; overflow-y:auto;">
+          <p style="font-size: 15px; text-align: left; padding-left: 10px; padding-right: 10px; padding-top: 10px; padding-bottom: 10px;">{{msg}}</p>
+        </div>
+        <br>
+        <div align="center" style="max-width: 250px;">
+          <button class="btn btn-danger" (click)="deleteMsg()" style="max-width: 50%;">Διαγραφή</button>
+        </div>
+        <br>
+        <div id="msg" align="center" *ngIf="showMsg" class="form-group">
+          <h4>Απάντηση:</h4> 
+          <div align="center">
+            <textarea rows="5" cols="50" class="form-control" style="height: 100px; max-width: 380px;"></textarea>
+          </div>
+          <br>
+          <div align="center" style="max-width: 250px;">
+            <button class="btn btn-info" (click)="sendAnswer()" style="max-width: 50%;">Αποστολή</button>
+          </div>
+        </div>
+      </div>
+</div>
+
+<br>
+<br>
+<br>

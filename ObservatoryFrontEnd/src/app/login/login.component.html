@@ -1,0 +1,45 @@
+<div align="center" style="height: 100vh;">
+
+<!-- Default form register -->
+<form class="text-center border border-light p-5" style="padding: 10px; width: 400px;">
+    <!--Header-->
+    <p style="font-size: 25px; font-weight: bold; color: #fd9501">Σύνδεση</p>
+
+<form name="form" (ngSubmit)="f.form.valid && onSubmit()" #f="ngForm" novalidate>
+
+ <!-- Username -->
+
+
+<div class="form-group" [class.has-error]="username.invalid && (username.dirty || username.touched)">
+     <input id="username" placeholder="Ψευδώνυμο" class="form-control" name="username" [(ngModel)]="model.username" #username="ngModel" required minlength="6" [ngClass]="{ 'is-invalid': f.submitted && username.invalid }" required username />
+      <div *ngIf="username.invalid && (username.dirty || username.touched)" class="help-block">
+        <span class="help-block"
+         *ngIf="username.errors.required">To πεδίο είναι υποχρεωτικό</span>
+        <span class="help-block"
+         *ngIf="username.errors.minlength">Το ψευδώνυμο πρέπει να είναι τουλάχιστον 6 χαρακτήρες</span>
+      </div>
+</div>
+
+ <!--password-->
+<div class="form-group" [class.has-error]="password.invalid && (password.dirty || password.touched)">
+     <input type="password" id="password" placeholder="Kωδικός Πρόσβασης" class="form-control" name="password" [(ngModel)]="model.password" #password="ngModel" required minlength="6" [ngClass]="{ 'is-invalid': f.submitted && password.invalid }" required password />
+      <div *ngIf="password.invalid && (password.dirty || password.touched)" class="help-block">
+        <span class="help-block"
+         *ngIf="password.errors.required">Το πεδίο είναι υποχρεωτικό</span>
+        <span class="help-block"
+         *ngIf="password.errors.minlength">Ο κωδικός πρέπει να είναι τουλάχιστον 6 χαρακτήρες</span>
+      </div>
+</div>
+<div *ngIf="nomatch" class="help-block">
+    <span class="help-block" style="color:#f44336">Το ψευδώνυμο και ο κωδικός δεν ταιριάζουν</span>
+
+</div>
+  <button type="submit" class="button" [disabled]="f.form.pristine || f.form.invalid">Σύνδεση</button>
+  <br><br>
+   <label for="newAcount" style="padding: 4px;">Δεν έχετε λογαριασμό;</label>
+   <button type="submit" class="button2" routerLink="/register" routerLinkActive = "active">Δημιουργήστε τώρα!</button>
+
+</form>
+
+</form>
+</div>

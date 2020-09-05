@@ -1,0 +1,12 @@
+<form id="search">
+	<a routerLink='/home'>
+	<img src="../../assets/logo.png" class="secondary_logo"></a>
+	<input type="text" id="button" [(ngModel)]="searchAttribute" name="searchAttribute" 
+		style= "width: 30%; 
+			min-width: 170px;
+			  border-radius: 10px;">
+	<button type="submit" id="butt1index" (click)="search(searchAttribute)" 
+		style= "width: 15%; 
+			min-width: 100px;
+			border-radius: 10px;"> Αναζήτηση</button>
+</form>

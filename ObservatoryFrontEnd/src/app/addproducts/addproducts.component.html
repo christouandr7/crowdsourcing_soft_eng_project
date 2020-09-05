@@ -1,0 +1,75 @@
+<div align="center" style="min-height: 100vh; max-height: 100%;">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <form class="text-center border border-light p-5" style="padding: 10px; max-width: 500px;">
+      <!--Header-->
+      <p style="font-size: 25px; font-weight: bold; color:#fd9501;">Προσθήκη Τιμών Προϊόντων</p>
+  
+  <br>
+  <form name="form" (ngSubmit)="f.form.valid && onSubmit()" #f="ngForm" novalidate>	
+
+    <mat-form-field>
+        <mat-select name=selectPr [(ngModel)]="selectedOption" placeholder="Επιλογή Προϊόντος" [disabled]="dis" required>
+                <mat-option></mat-option>
+                <mat-option *ngFor="let a of res" [value]="a._id">
+            {{a.name}}
+          </mat-option>
+        </mat-select>
+      </mat-form-field>
+
+      <br>
+        <button class="button" (click)="prodPage()"><b>Προσθήκη Νέου Προϊόντος</b></button>
+    <br>
+   <br>
+
+  
+      <mat-form-field>
+          <mat-select name=selectSh [(ngModel)]="selectedOption2" placeholder="Επιλογή Καταστήματος" [disabled]="dis" required>
+              <mat-option></mat-option>     
+            <mat-option *ngFor="let o of res2" [value]="o._id">
+              {{o.name}}
+            </mat-option>
+          </mat-select>
+        </mat-form-field>
+
+        <br>
+        <button class="button" (click)="shopPage()"><b>Προσθήκη Νέου Καταστήματος</b></button>
+      <br>
+              
+  <hr>
+  <!--Date-->
+
+  <mat-form-field class="mat-cell-input-number" max-height="1px">
+      <uix-mat-number-spinner increase="0.01" decrease="0.01" fix="2"  [(value)]="number1"></uix-mat-number-spinner>
+      <input matInput placeholder="Τιμή (€)" type="number" required name="price" #price="ngModel" min="0"  step=".01" [(ngModel)]="number1">
+    </mat-form-field>
+    <div *ngIf="number1==0" class="help-block" >
+        <span max-height="1px" style="color:#f44336" class="help-block" *ngIf="number1==0 && price.touched">Παρακαλώ εισάγετε νέα τιμή</span>
+      </div>
+
+    
+    
+  <div class="row">
+    <div class="col-xs-6">
+        <label for="field1" style="color:grey; font-size: 14px;">Από:</label>
+        <ejs-datepicker #dateFromP="ngModel" id='datepicker' name="dateFromP"  [min]='minDate' [max]='maxDate' [(ngModel)]="pr.dateFrom"></ejs-datepicker>
+    </div>
+    <div class="col-xs-6">
+        <label for="field2" style="color:grey; font-size: 14px;">Μέχρι:</label>
+        <ejs-datepicker #dateToP="ngModel"  id='datepicker2' name='dateToP'  [min]='minDateTo' [max]='maxDate' [(ngModel)]="pr.dateTo"></ejs-datepicker>
+      </div>
+      <div *ngIf="dateFromP.pristine || dateToP.pristine" class="help-block" >
+          <span max-height="1px" style="color:#f44336" class="help-block" *ngIf="dateFromP.pristine || dateToP.pristine">Αφήνοντας οποιαδήποτε από τις ημερομηνίες κενή αυτόματα θα εισάγετε η σημερινή </span>
+      </div>
+</div>
+
+
+  <!-- Sign up button -->
+  <br>
+  <div class="form-group">
+        <button class="button2" [disabled]="f.form.pristine ||f.form.invalid ||number1==0"><b>Προσθήκη</b></button>
+  </div>
+  </form>
+  </form>
+</div>
+  

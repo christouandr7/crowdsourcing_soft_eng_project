@@ -1,0 +1,29 @@
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<body>
+	<div class="container">
+		<div class="row">
+			<app-searchbar></app-searchbar>
+			<div *ngIf="search_step==2">
+				<h1 style="text-align: center; color: black">{{productName}}</h1>
+				<br>
+			</div>
+
+		</div>
+		
+		<div class="row" align="center">
+			<div class="col-12 col-sm-4">
+				<app-searchfilters></app-searchfilters>
+			</div>
+			<div class="col-12 col-sm-8">
+			<div *ngIf="search_step==1">		
+				<app-searchresults (messageEvent)="receiveMessage($event)"></app-searchresults>
+			</div>
+
+			<div *ngIf="search_step==2">		
+				<app-price (messageEvent)="receiveProduct($event)"></app-price>
+			</div>		
+		</div>
+	</div>
+</div>
+</body>

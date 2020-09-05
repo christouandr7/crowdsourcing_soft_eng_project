@@ -1,0 +1,36 @@
+				
+				<div *ngIf="status=='success'">
+					<div class="card" *ngFor="let resu of final_results" padding>
+						<div class="card-body">
+							<h3 class="name">{{ resu.name }}</h3>
+							<p  class="descr paragraph nomobile" style="height: 12vh; min-height: 120px;  overflow-y: auto;">{{ resu.description }}</p>
+							<button id="butt1index" style="width: 100%;" name="{{resu._id}}"  (click)="productClick($event)">Δείτε τις τιμές και τα καταστήματα</button>
+						</div>
+					</div>
+				</div>
+
+
+
+
+				<div align="center" *ngIf="status=='no_results'">
+					<div style="height: 100vh;">
+						<h1 style="background-color: #ffbf80; border-radius: 25px; width: 70%; padding-bottom: 15px; padding-top: 15px;">Κανένα
+						Αποτέλεσμα :(</h1>
+					</div>
+				</div>
+
+				<div align="center" *ngIf="status=='error'">
+					<div style="height: 100vh;">
+						<h1 style="background-color: #ffbf80; border-radius: 25px; width: 70%; padding-bottom: 15px; padding-top: 15px;">Internal
+						Error :(</h1>
+					</div>
+				</div>
+
+
+				<div align="center" *ngIf="status=='loading'">
+					<div style="height: 100vh;">
+						<h1 style="background-color: #ffbf80; border-radius: 25px; width: 70%; padding-bottom: 15px; padding-top: 15px;">Loading</h1>
+					</div>
+				</div>
+
+		

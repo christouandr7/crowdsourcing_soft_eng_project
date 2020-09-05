@@ -1,0 +1,27 @@
+{
+  "name": "observatoryapi",
+  "version": "1.0.0",
+  "description": "",
+  "main": "server.js",
+  "directories": {
+    "test": "test"
+  },
+  "dependencies": {
+    "bcryptjs": "^2.4.3",
+    "chai": "^4.2.0",
+    "cors": "^2.8.5",
+    "express": "^4.16.4",
+    "jsonwebtoken": "^8.4.0",
+    "mocha": "^6.0.2",
+    "mongoose": "^5.4.0",
+    "morgan": "^1.9.1",
+    "supertest": "^3.4.2"
+  },
+  "devDependencies": {},
+  "scripts": {
+    "test": "mocha test/apiTest.js --delay",
+    "start": "node server.js"
+  },
+  "author": "",
+  "license": "ISC"
+}
